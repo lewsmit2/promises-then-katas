@@ -25,17 +25,43 @@ fetch("joke", "question").then(<insert your callback function>)
 // 1 Create a function that uses the fetch function to make a request to the "food" URL and returns
 // the data - expected return value "Cheese" of type String
 
-const food = () => {};
+
+const food = async () => {
+    try{
+      const response = await fetch('food');
+      return response.data;  
+    } catch (error) {
+        console.log('error');
+    }
+};
 
 // 2 Create a function that uses the fetch function to make a request to the "cats" URL and returns
 // a list of cats in alphabetical order - expected return value ["Bandit", "Berry", "Puss in boots", "Smokey"] of type Array
 
-const cat = () => {};
+const cat = async () => {
+    try {
+      const response = await fetch('cats');
+      const sortedCats = response.data.cats.sort();
+      return sortedCats;
+    } catch (error) {
+        console.log('error');
+    }
+  };
 
 // 3 Create a function that uses the fetch function to make a request to the "dogs" URL and returns
 // the naughtiest dog - expected return value {name: "Mutley", naughty: 10} of type Object
 
-const dog = () => {};
+const dog = async () => {
+    try {
+      const response = await fetch('dogs');
+      const naughtiestDog = response.data.dogs.reduce((previous, current) => 
+          previous.naughty > current.naughty ? previous : current
+      );
+      return naughtiestDog;
+    } catch (error) {
+        console.log('error');
+    }
+  };
 
 // 4 Create a function that uses the fetch function to make requests to the "jokes" URL and returns
 // a joke object with the key of question and answer - expected return { 
@@ -47,7 +73,17 @@ const dog = () => {};
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 //
 
-const joke = () => {};
+const joke = async () => {
+    try {
+        const questionJoke = await fetch('jokes', 'question');
+        const answerToJoke = await fetch('jokes');
+        return ({ question: questionJoke.joke, answer: answerToJoke.answer});
+    } catch {
+        console.log('error');
+    }
+  };
+
+
 
 module.exports = {
     food,
