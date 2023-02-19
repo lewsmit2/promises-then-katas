@@ -63,6 +63,24 @@ const dog = async () => {
     }
   };
 
+//   const dog = async () => {
+//     const response = await fetch('dogs')
+//     console.log(response)
+//     const naughtyDog = response.data.dogs.sort((previous, current)=> current.naughty - previous.naughty)
+//     return naughtyDog[0]
+// };
+// Alternative solution from Chris Edwards. Included here for Chris' kata only.
+// const dog2 = async () => {
+//     const response = await fetch("dogs", {});
+//     const naughtiestDog = response.data.dogs.reduce(
+//       (mostNaughty, dog) => {
+//         return dog.naughty > mostNaughty.naughty ? dog : mostNaughty;
+//       },
+//       { naughty: 0 }
+//     );
+//     return naughtiestDog;
+//   };
+
 // 4 Create a function that uses the fetch function to make requests to the "jokes" URL and returns
 // a joke object with the key of question and answer - expected return { 
 //     question: "Why did the scarecrow win the Nobel Prize?",

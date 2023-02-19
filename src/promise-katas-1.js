@@ -34,7 +34,7 @@ Remember, a Promise can only resolve successfully, or reject when it fails to re
 // 'resolve' Promise callback function in order to resolve successfully
 
 const returnPromise = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         resolve()
     })
 };
@@ -44,7 +44,7 @@ const returnPromise = () => {
 // returnTen() resolves to the value 10
 
 const returnTen = () => { 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         resolve(10)
     })
 };
@@ -54,7 +54,7 @@ const returnTen = () => {
 // returnString() resolves to the value 'string'
 
 const returnString = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         resolve('string')
     })
  };
@@ -64,7 +64,7 @@ const returnString = () => {
 // returnBob() resolves to the value { name: 'Bob' }
 
 const returnBob = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         resolve({ name: 'Bob' })
     })
  };
@@ -74,7 +74,7 @@ const returnBob = () => {
 // returnList() resolves to the value ['eggs', 'apples', 'milk', 'bread']
 
 const returnList = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         resolve(['eggs', 'apples', 'milk', 'bread'])
     })
  };
@@ -84,7 +84,7 @@ const returnList = () => {
 // anError() rejects to "An error occurred"
 
 const anError = () => { 
-    return new Promise((resolve, reject) => {
+    return new Promise((_, reject) => {
         reject('An error occurred')
     })
 };
@@ -94,7 +94,7 @@ const anError = () => {
 // theNumberOfTheBeast() rejects to the value 666
 
 const theNumberOfTheBeast = () => { 
-    return new Promise((resolve, reject) => {
+    return new Promise((_, reject) => {
         reject(666)
     })
 };
@@ -105,11 +105,7 @@ const theNumberOfTheBeast = () => {
 
 const internalServerError = () => { 
     return new Promise((resolve, reject) => {
-        if(500 < 400) {
-            resolve('resolved');
-        } else {
-            reject({ error: 500});
-        }
+        reject({error: 500});
     })
 };
 
@@ -142,7 +138,7 @@ const amIYourFather = (name) => {
 // A call to myNameIs() resolves to a new function that takes one argument, name, and returns "My name is name" Eg (name) => `My name is ${name}`
 
 const myNameIs = (name) => { 
-    return new Promise((res, rej) => {
+    return new Promise((res) => {
         res((name) => {
             return `My name is ${name}`;
         });
